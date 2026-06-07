@@ -1,0 +1,131 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<WarningLevel>2</WarningLevel>
+	<FileVersion>1.0.2.0</FileVersion>
+	<AssemblyVersion>1.0.2.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CalculateFee\**" />
+    <Compile Remove="Controllers\LaoPengNguan\**" />
+    <Content Remove="CalculateFee\**" />
+    <Content Remove="Controllers\LaoPengNguan\**" />
+    <EmbeddedResource Remove="CalculateFee\**" />
+    <EmbeddedResource Remove="Controllers\LaoPengNguan\**" />
+    <None Remove="CalculateFee\**" />
+    <None Remove="Controllers\LaoPengNguan\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\CompanyApiController.cs" />
+    <Compile Remove="Controllers\ConnectController.cs" />
+    <Compile Remove="Controllers\MemberInfoApiController.cs" />
+    <Compile Remove="Controllers\Models\AllSeason.cs" />
+    <Compile Remove="Controllers\Models\AssistantMachine.cs" />
+    <Compile Remove="Controllers\Models\AssistantMachineMonitor.cs" />
+    <Compile Remove="Controllers\Models\AutoStamp.cs" />
+    <Compile Remove="Controllers\Models\Barrier.cs" />
+    <Compile Remove="Controllers\Models\CalFee.cs" />
+    <Compile Remove="Controllers\Models\CallFeeOnline.cs" />
+    <Compile Remove="Controllers\Models\CaptureImage.cs" />
+    <Compile Remove="Controllers\Models\CardType.cs" />
+    <Compile Remove="Controllers\Models\Company.cs" />
+    <Compile Remove="Controllers\Models\CurrentIn.cs" />
+    <Compile Remove="Controllers\Models\EStamp.cs" />
+    <Compile Remove="Controllers\Models\EStampV2.cs" />
+    <Compile Remove="Controllers\Models\Login.cs" />
+    <Compile Remove="Controllers\Models\MasSatff.cs" />
+    <Compile Remove="Controllers\Models\Masvehiclemember.cs" />
+    <Compile Remove="Controllers\Models\Member.cs" />
+    <Compile Remove="Controllers\Models\MemberInfo.cs" />
+    <Compile Remove="Controllers\Models\ParkingLPR.cs" />
+    <Compile Remove="Controllers\Models\ParkingTransactionInfo.cs" />
+    <Compile Remove="Controllers\Models\Parklot.cs" />
+    <Compile Remove="Controllers\Models\ParkType.cs" />
+    <Compile Remove="Controllers\Models\StampAndRate.cs" />
+    <Compile Remove="Controllers\Models\StampInfo.cs" />
+    <Compile Remove="Controllers\Models\StampOnline.cs" />
+    <Compile Remove="Controllers\Models\TranParking.cs" />
+    <Compile Remove="Controllers\Models\TranQrCoupon.cs" />
+    <Compile Remove="Controllers\Models\VehecleMemberM.cs" />
+    <Compile Remove="Controllers\Models\Vehicle.cs" />
+    <Compile Remove="Controllers\Models\WSAutoStamp.cs" />
+    <Compile Remove="Controllers\Models\WSParkingCalling.cs" />
+    <Compile Remove="Controllers\Models\WSParkingEntranceConfirmLicense.cs" />
+    <Compile Remove="Controllers\Models\WSParkingExitConfirmLicense.cs" />
+    <Compile Remove="Controllers\Models\WSProtocal.cs" />
+    <Compile Remove="Controllers\Models\WSTransaction.cs" />
+    <Compile Remove="Controllers\StaffAllApiController.cs" />
+    <Compile Remove="Controllers\StampCyclesApiController.cs" />
+    <Compile Remove="Controllers\StampInfoApiController.cs" />
+    <Compile Remove="Controllers\TicketlessConfirmLicenseApiController.cs" />
+    <Compile Remove="Controllers\TicketlessConfirmTransactionApiController.cs" />
+    <Compile Remove="Controllers\TicketlessEStampApiController.cs" />
+    <Compile Remove="Controllers\TicketlessParkingFeePrePaidAPIController.cs" />
+    <Compile Remove="Controllers\TicketlessWriteMasterToFileApiController.cs" />
+    <Compile Remove="Controllers\Ticketless\TicketlessWriteMasterToFileApiController.cs" />
+    <Compile Remove="Controllers\ZoneInfoApiController.cs" />
+    <Compile Remove="Database\JudjodDbEntities.cs" />
+    <Compile Remove="FileService\Cst.cs" />
+    <Compile Remove="FileService\Escp.cs" />
+    <Compile Remove="FileService\Est.cs" />
+    <Compile Remove="FileService\Opbr.cs" />
+    <Compile Remove="FileService\Pstm.cs" />
+    <Compile Remove="FileService\Pstr.cs" />
+    <Compile Remove="FileService\Shf.cs" />
+    <Compile Remove="FileService\Tax.cs" />
+    <Compile Remove="FileService\Tst.cs" />
+    <Compile Remove="Repo\Picture.cs" />
+    <Compile Remove="Repo\TranparkingLPR.cs" />
+    <Compile Remove="Repo\Utility.cs" />
+    <Compile Remove="Repo\WebSocketHandler.cs" />
+    <Compile Remove="Repo\WSFunction.cs" />
+    <Compile Remove="Worker\CheckCardExipire.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.6.2" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.0" />
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.1" />
+    <PackageReference Include="RestSharp" Version="114.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.1" />
+    <PackageReference Include="System.Text.Json" Version="10.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CHO.Core.Tools">
+      <HintPath>Packages\CHO.Core.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="CHOCore.Json">
+      <HintPath>Packages\CHOCore.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="CHOCore.Logging">
+      <HintPath>Packages\CHOCore.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="CHOCore.Timer">
+      <HintPath>Packages\CHOCore.Timer.dll</HintPath>
+    </Reference>
+    <Reference Include="FeeCalculation">
+      <HintPath>Packages\FeeCalculation.dll</HintPath>
+    </Reference>
+    <Reference Include="JudjodLibrary">
+      <HintPath>Packages\JudjodLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
