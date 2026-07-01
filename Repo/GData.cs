@@ -1,5 +1,6 @@
 ﻿using JPMSAPI.Models;
 using JpmsApiCore_MySql.Database;
+using JpmsApiCore_MySql.Database.SqlServer;
 using JpmsApiCore_MySql.FileService;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -234,11 +235,37 @@ namespace JPMSAPI.Repo
 
                     if (!string.IsNullOrEmpty(cardNo))
                     {
-                        // Match by PARKINGCARD_CODE in the zone (compare DateOnly directly, not via ToDateTime)
-                        var card = await db.TbParkingCards
-                            .Where(c => c.ParkingcardCode == cardNo && c.ZoneId == zoneId
-                                     && c.IssueDate <= today && c.ExpireDate >= today)
-                            .FirstOrDefaultAsync();
+                        TbParkingCard? card = null;
+
+                        // CardNo can be: decimal UID (e.g. "13921433"), hex UID (e.g. "00D46C99"), or card code (e.g. "CM01033")
+                        string? resolvedUniqueIdHex = null;
+                        if (long.TryParse(cardNo, out long cardUid))
+                        {
+                            // Decimal UID → convert to 8-digit uppercase hex
+                            resolvedUniqueIdHex = cardUid.ToString("X8");
+                        }
+                        else if (cardNo.Length <= 16 && long.TryParse(cardNo, System.Globalization.NumberStyles.HexNumber, null, out long hexVal))
+                        {
+                            // Hex string UID (e.g. "00D46C99") → uppercase and pad to 8
+                            resolvedUniqueIdHex = hexVal.ToString("X8");
+                        }
+
+                        if (resolvedUniqueIdHex != null)
+                        {
+                            card = await db.TbParkingCards
+                                .Where(c => c.UniqueId == resolvedUniqueIdHex && c.ZoneId == zoneId
+                                         && c.IssueDate <= today && c.ExpireDate >= today)
+                                .FirstOrDefaultAsync();
+                            await Repo.GData.Log.AddLoggingAsync("CheckMemberCardAndLicense lookup by UniqueId hex=" + resolvedUniqueIdHex + " (CardNo=" + cardNo + ")");
+                        }
+                        else
+                        {
+                            // Alpha card code (e.g. "CM01033") — search by PARKINGCARD_CODE
+                            card = await db.TbParkingCards
+                                .Where(c => c.ParkingcardCode == cardNo && c.ZoneId == zoneId
+                                         && c.IssueDate <= today && c.ExpireDate >= today)
+                                .FirstOrDefaultAsync();
+                        }
 
                         if (card != null && card.Active == 1 && card.MemberId > 0)
                         {
